@@ -5,7 +5,7 @@
  * GNU GENERAL PUBLIC LICENSE
  * Version 3, 29 June 2007
  *
- * (C) 2017, Bernd Porr <mail@bernporr.me.uk>
+ * (C) 2018, Bernd Porr <mail@bernporr.me.uk>
  **/
 
 #ifdef __linux__
@@ -24,6 +24,8 @@
 // abstract thread which contains the inner workings of the thread model
 class CppThread {
 
+private:
+	
 #ifdef __linux__
 	pthread_t id = 0;
 #endif
@@ -50,6 +52,7 @@ class CppThread {
 
 public:
 	CppThread() {};
+	
 	virtual ~CppThread() {
 #ifdef _WIN32
 		CloseHandle(hThread);
@@ -59,7 +62,11 @@ public:
 	void start() {
 #ifdef __linux__
 		int ret;
-		if ((ret = pthread_create(&id, NULL, &CppThread::exec, this)) != 0) {
+		if ((ret = pthread_create(
+			     &id,
+			     NULL,
+			     &CppThread::exec,
+			     this)) != 0) {
 			fprintf(stderr,"%s\n",strerror(ret)); 
 			throw "Error"; 
 		}
@@ -87,7 +94,8 @@ public:
 #endif
 	}
 
-	// is implemented by its children to do the specfic task the thread
+	// is implemented by its children
+	// this is exectuted once "start" has been triggered
 	virtual void run() = 0;
 	
 };
