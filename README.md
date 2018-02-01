@@ -34,4 +34,9 @@ private:
 	myThread.join();
 ```
 
+### Demo program
+
+To run `demo.cpp` just do `cmake .`, `make` and then `./demo`.
+
+
 That's it. Enjoy!
