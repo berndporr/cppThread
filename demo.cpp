@@ -1,25 +1,6 @@
 #include <stdio.h>
-#include "CppThread.h"
+#include "DemoThread.h"
 #include <unistd.h>
-
-
-class DemoThread : public CppThread {
-
-public:
-	DemoThread(int _offset) {
-		offset = _offset;
-	}
-
-private:
-	void run() {
-		for(int i=0;i<10;i++) {
-			printf("%d\n",i+offset);
-			usleep(1000);
-		}
-	}
-private:
-	int offset;
-};
 
 
 main( int argc, const char* argv[] ) {

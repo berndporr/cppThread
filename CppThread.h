@@ -67,7 +67,6 @@ public:
 			     NULL,
 			     &CppThread::exec,
 			     this)) != 0) {
-			fprintf(stderr,"%s\n",strerror(ret)); 
 			throw "Error"; 
 		}
 #endif

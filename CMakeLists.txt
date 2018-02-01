@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.9)
 set (CMAKE_CXX_STANDARD 11)
 project (demo)
-add_executable(demo demo.cpp)
+add_executable(demo DemoThread.cpp demo.cpp)
 find_package (Threads)
 target_link_libraries (demo ${CMAKE_THREAD_LIBS_INIT})
