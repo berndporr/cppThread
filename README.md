@@ -34,9 +34,12 @@ private:
 	myThread.join();
 ```
 
-### Demo program
+## Demo program
 
+### Linux
 To run `demo.cpp` just do `cmake .`, `make` and then `./demo`.
 
+### Window
+To run `demo.cpp` just do `cmake .`, the start visual C++, open the solution, build it and then run `Debug\demo`.
 
 That's it. Enjoy!
