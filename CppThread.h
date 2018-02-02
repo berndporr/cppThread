@@ -74,7 +74,7 @@ public:
 		hThread = CreateThread(
 			NULL,                   // default security attributes
 			0,                      // use default stack size  
-			&LayerThread::exec,     // thread function name
+			&CppThread::exec,     // thread function name
 			this,                   // argument to thread function 
 			0,                      // use default creation flags 
 			&id);   // returns the thread identifier 

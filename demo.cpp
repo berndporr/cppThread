@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include "DemoThread.h"
-#include <unistd.h>
 
 
-main( int argc, const char* argv[] ) {
+int main( int argc, const char* argv[] ) {
 	DemoThread demoThread1(0);
 	DemoThread demoThread2(10);
 	DemoThread demoThread3(20);
