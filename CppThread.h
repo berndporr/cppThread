@@ -18,9 +18,6 @@
 #endif
 
 
-#define NUM_THREADS 12
-
-
 // abstract thread which contains the inner workings of the thread model
 class CppThread {
 
@@ -67,19 +64,18 @@ public:
 			     NULL,
 			     &CppThread::exec,
 			     this)) != 0) {
-			throw "Error"; 
+			throw "Cannot create thread"; 
 		}
 #endif
 #ifdef _WIN32
-		hThread = CreateThread(
-			NULL,                   // default security attributes
-			0,                      // use default stack size  
-			&CppThread::exec,     // thread function name
-			this,                   // argument to thread function 
-			0,                      // use default creation flags 
-			&id);   // returns the thread identifier 
-		if (hThread == NULL) {
-			ExitProcess(3);
+		if ((hThread = CreateThread(
+			NULL,
+			0,
+			&CppThread::exec,
+			this,
+			0,
+			&id)) == NULL) {
+			throw "Cannot create thread";
 		}
 #endif
 	}
@@ -93,8 +89,8 @@ public:
 #endif
 	}
 
-	// is implemented by its children
-	// this is exectuted once "start" has been triggered
+	// is implemented by its ancestors
+	// this is exectuted once "start()" has been called
 	virtual void run() = 0;
 	
 };
