@@ -2,11 +2,10 @@
 Generic C++ Thread
 
 The C++ `std::thread` has the problem that it can only call static
-functions / methods which is a problem. This class solves this
-problem as a thin wrapper which creates a class with a `run()`
-method which is called as a a new thread.
+functions / methods. This class solves this
+problem with an abstract `run()` method which acts as the thread.
 
-Just inherit this class, implement your `run()` function and
+Just inherit this class, implement your `run()` method doing the work in the thread and
 then use `start()` to start the thread.
 
 ## Usage
