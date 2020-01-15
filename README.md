@@ -1,7 +1,5 @@
 # CppThread
-Generic C++ Thread for Linux and Windows
-
-It's a wrapper aroung pthreads and Windows threads.
+Generic C++ Thread
 
 ## Usage
 Include CppThread.h in your program.
@@ -36,7 +34,7 @@ private:
 
 ## Demo program
 
-### Linux
+### Linux / Mac
 To run `demo.cpp` just do `cmake .`, `make` and then `./demo`.
 
 ### Windows
