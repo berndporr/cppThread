@@ -5,7 +5,7 @@ The C++ `std::thread` has the problem that it can only call static
 functions / methods. This class solves this
 problem with an abstract `run()` method which acts as the thread.
 
-Just inherit this class, implement your `run()` method doing the work in the thread and
+Just inherit this class, implement your `run()` method and
 then use `start()` to start the thread.
 
 ## Usage
