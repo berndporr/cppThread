@@ -31,7 +31,8 @@ public:
 			delete uthread;
 		}
 	}
-	
+
+protected:
 	// is implemented by its ancestors
 	virtual void run() = 0;	
 
