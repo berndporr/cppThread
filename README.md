@@ -9,30 +9,27 @@ Just inherit this class, implement your `run()` method and
 then use `start()` to start the thread.
 
 ## Usage
-Include CppThread.h in your program.
+Include CppThread.h in your program. It's header-only.
 
-### Create the Thread class
+### Create yoir Thread class which inherits CppThread
+
+Just overload `run()` which does the work in your thread.
+
 ```
 class MyThread : public CppThread {
-
-public:
-	// override the constructor and add your init stuff
-	MyThread(myArgs) {	    
-	    // Your init code here!
-	}
 
 private:
 	// implement run which is doing all the work
 	void run() {
 	     // Your magic worker here!
 	}
-	
-private:
-	// Your private data
 };
 ```
 
 ### Run the Thread class
+
+`start()` starts the thread and runs the method `run()`.
+If you need to wait for its completion then call `join()`.
 ```
 	MyThread myThread;
 	myThread.start();

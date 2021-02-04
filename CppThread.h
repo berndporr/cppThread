@@ -10,29 +10,46 @@
 
 #include <thread>
 
-// abstract thread which contains the inner workings of the thread model
+/**
+ * A thin wrapper around the C++ thread model to avoid
+ * a static callback. Instead just inherit this class
+ * and overload run() which then runs in this thread.
+ * This is header-only so that it can be performed
+ * inline for max performance.
+ **/
 class CppThread {
 
 public:
-	void start() {
+	/**
+	 * Starts the thread.
+	 **/
+	inline void start() {
 		uthread.reset(new std::thread(CppThread::exec, this));
 	}
 
-	void join() {
+	/**
+	 * Waits for the thread to terminate.
+	 **/
+	inline void join() {
 		if (nullptr != uthread) {
 			uthread->join();
+			uthread = nullptr;
 		}
-		uthread = nullptr;
 	}
 
 protected:
-	// is implemented by its ancestors
+	/**
+	 * This method does all the work of this thread.
+         * Overload this abstract function with 
+	 * a real one doing the actual work of this thread.
+	 **/
 	virtual void run() = 0;	
 
 private:
-	std::unique_ptr<std::thread> uthread = nullptr;
+	// pointer to the thread
+	std::shared_ptr<std::thread> uthread = nullptr;
 
-	// static function which points back to the class
+	// static function which points back to the instance
 	static void exec(CppThread* cppThread) {
 		cppThread->run();
 	}
