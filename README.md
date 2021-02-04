@@ -1,19 +1,22 @@
 # CppThread
-Generic C++ Thread
+
+Thin wrapper class around `std::thread` to make your life easier!
 
 The C++ `std::thread` has the problem that it can only call static
 functions / methods. This class solves this
 problem with an abstract `run()` method which acts as the thread.
 
 Just inherit this class, implement your `run()` method and
-then use `start()` to start the thread.
+then use `start()` to start the thread. You can use `join()` for
+the thread to complete.
 
 ## Usage
+
 Include CppThread.h in your program. It's header-only.
 
-### Create yoir Thread class which inherits CppThread
+### Create your Thread class by inheriting `CppThread`
 
-Just overload `run()` which does the work in your thread.
+Just overload `run()` which does the work in your thread:
 
 ```
 class MyThread : public CppThread {
@@ -29,7 +32,7 @@ private:
 ### Run the Thread class
 
 `start()` starts the thread and runs the method `run()`.
-If you need to wait for its completion then call `join()`.
+If you need to wait for its completion then call `join()`:
 ```
 	MyThread myThread;
 	myThread.start();

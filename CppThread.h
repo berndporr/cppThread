@@ -47,7 +47,7 @@ protected:
 
 private:
 	// pointer to the thread
-	std::shared_ptr<std::thread> uthread = nullptr;
+	std::unique_ptr<std::thread> uthread = nullptr;
 
 	// static function which points back to the instance
 	static void exec(CppThread* cppThread) {
