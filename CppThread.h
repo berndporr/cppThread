@@ -5,7 +5,7 @@
  * GNU GENERAL PUBLIC LICENSE
  * Version 3, 29 June 2007
  *
- * (C) 2020-2021, Bernd Porr <mail@bernporr.me.uk>
+ * (C) 2020-2022, Bernd Porr <mail@bernporr.me.uk>
  **/
 
 #include <thread>
@@ -24,7 +24,9 @@ public:
 	 * Starts the thread.
 	 **/
 	inline void start() {
-		uthread.reset(new std::thread(CppThread::exec, this));
+		if (nullptr == uthread) {
+			uthread = new std::thread(CppThread::exec, this);
+		}
 	}
 
 	/**
@@ -33,6 +35,7 @@ public:
 	inline void join() {
 		if (nullptr != uthread) {
 			uthread->join();
+			delete uthread;
 			uthread = nullptr;
 		}
 	}
@@ -47,7 +50,7 @@ protected:
 
 private:
 	// pointer to the thread
-	std::unique_ptr<std::thread> uthread = nullptr;
+	std::thread* uthread = nullptr;
 
 	// static function which points back to the instance
 	static void exec(CppThread* cppThread) {
