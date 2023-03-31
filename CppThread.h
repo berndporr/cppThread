@@ -24,20 +24,14 @@ public:
 	 * Starts the thread.
 	 **/
 	inline void start() {
-		if (nullptr == uthread) {
-			uthread = new std::thread(CppThread::exec, this);
-		}
+		uthread = std::thread(&CppThread::run, this);
 	}
 
 	/**
 	 * Waits for the thread to terminate.
 	 **/
 	inline void join() {
-		if (nullptr != uthread) {
-			uthread->join();
-			delete uthread;
-			uthread = nullptr;
-		}
+		uthread.join();
 	}
 
 protected:
@@ -50,12 +44,7 @@ protected:
 
 private:
 	// pointer to the thread
-	std::thread* uthread = nullptr;
-
-	// static function which points back to the instance
-	static void exec(CppThread* cppThread) {
-		cppThread->run();
-	}
+	std::thread uthread;
 };
 
 

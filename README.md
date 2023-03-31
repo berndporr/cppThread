@@ -1,10 +1,7 @@
 # CppThread
 
-Thin wrapper class around `std::thread` to make your life easier!
-
-The C++ `std::thread` has the problem that it can only call static
-functions / methods. This class solves this
-problem with an abstract `run()` method which acts as the thread.
+Super-thin wrapper class around `std::thread` as a demo how
+to use it.
 
 Just inherit this class, implement your `run()` method and
 then use `start()` to start the thread. You can use `join()` for
